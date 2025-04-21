@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from workflow.workflow import ICON_HELP as WARNINGICON
 from workflow.workflow import ICON_NOTE as HINT
 

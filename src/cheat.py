@@ -1,6 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from sys import exit
-from workflow import Workflow3 as Workflow
+from workflow import Workflow
 from libs.parser import Parser
 from libs.options import Options
 
