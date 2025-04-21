@@ -1,8 +1,8 @@
 #!/usr/bin/python
 from sys import exit
 from workflow import Workflow3 as Workflow
-from lib.parser import Parser
-from lib.options import Options
+from libs.parser import Parser
+from libs.options import Options
 
 
 def main(workflow):

@@ -2,7 +2,7 @@
 
 # Separated unit for configuration, in case we have extra features in the future.
 from workflow import Workflow3 as Workflow
-from lib.config import Config
+from libs.config import Config
 from workflow.notify import notify
 
 def main(workflow):
