@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from sys import exit
+import sys
+
 from workflow import Workflow
 from libs.parser import Parser
 from libs.options import Options
@@ -54,4 +55,4 @@ def main(workflow):
 
 if __name__ == "__main__":
     workflow = Workflow()
-    exit(workflow.run(main))
+    sys.exit(workflow.run(main))
