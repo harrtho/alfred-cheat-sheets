@@ -61,7 +61,7 @@ class Options:
         return None
 
     def showAvailable(self, sheetName=""):
-        ret = self._FilterSheetName(sheetName)
+        ret = self.filterSheetName(sheetName)
         if ret == []:
             Options.warning("Cheat sheet not found.", "", self._workflow)
             return None
@@ -77,7 +77,7 @@ class Options:
                     arg=self._parser._sheetMapping.get(sheet))
         return None
 
-    def _FilterSheetName(self, query):
+    def filterSheetName(self, query):
         names = self._parser.availableSheets()
         return self._workflow.filter(query, names)
 
