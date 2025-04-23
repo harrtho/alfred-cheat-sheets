@@ -79,7 +79,7 @@ class Options:
 
     def _FilterSheetName(self, query):
         names = self._parser.availableSheets()
-        return self._workflow.filter(query, names, key=lambda x: x)
+        return self._workflow.filter(query, names)
 
     @staticmethod
     def warning(msg, subtitle, workflow):
