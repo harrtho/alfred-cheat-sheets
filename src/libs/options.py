@@ -24,7 +24,7 @@ class Options:
                 return None
             ret = self._parser.searchInSheet(keyword, sheetName, self._workflow)
         if ret == []:
-            Options.warning("Not found", "No match found for search {}".format(keyword), self._workflow)
+            Options.warning(f"Not found in {sheetName}", f"No match found for search {keyword}", self._workflow)
             return None
         for item in ret:
             self._workflow.add_item(
