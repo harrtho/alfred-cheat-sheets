@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+from pathlib import Path
+
 from workflow import MATCH_ALL, MATCH_ALLCHARS
 
 
@@ -19,7 +21,7 @@ class Parser:
         ret = []
         for root, dirname, files in os.walk(self._path, followlinks=True):
             dirname[:] = [d for d in dirname if not d.startswith(".")]
-            files = [f for f in files if not f.startswith(".")]
+            files = [f for f in files if not f.startswith(".") and Path(f).suffix == ".md"]
             ret.extend(files)
             # update the cheat sheet mapping so that we can find the file location
             self._sheetMapping.update({cheatsheet: "".join([root, "/", cheatsheet]) for cheatsheet in files})
