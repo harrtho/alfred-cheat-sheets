@@ -10,24 +10,24 @@ class Options:
 
     LARGETEXTPATTERN = "{}\n\n{}"
 
-    def __init__(self, parser, workflow):
+    def __init__(self, parser, wf):
         self._parser = parser
-        self._workflow = workflow
+        self._wf = wf
         return None
 
     def searchInSheetByKeyword(self, sheetName, keyword):
         if sheetName is None:
-            ret = self._parser.searchAcrossAll(keyword, self._workflow)
+            ret = self._parser.searchAcrossAll(keyword, self._wf)
         else:
             if sheetName not in self._parser.availableSheets():
-                Options.warning("Cheat sheet not found.", "", self._workflow)
+                Options.warning("Cheat sheet not found.", "", self._wf)
                 return None
-            ret = self._parser.searchInSheet(keyword, sheetName, self._workflow)
+            ret = self._parser.searchInSheet(keyword, sheetName, self._wf)
         if ret == []:
-            Options.warning(f"Not found in {sheetName}", f"No match found for search {keyword}", self._workflow)
+            Options.warning(f"Not found in {sheetName}", f"No match found for search {keyword}", self._wf)
             return None
         for item in ret:
-            self._workflow.add_item(
+            self._wf.add_item(
                     title=item["command"],
                     subtitle=item["comment"],
                     copytext=item.get("command"),
@@ -44,9 +44,9 @@ class Options:
     def list(self, sheetName):
         ret = self._parser.list(sheetName)
         if ret == []:
-            Options.hint("Empty cheatsheet", "", self._workflow)
+            Options.hint("Empty cheatsheet", "", self._wf)
         for item in ret:
-            self._workflow.add_item(
+            self._wf.add_item(
                     title=item.get("command"),
                     subtitle=item.get("comment"),
                     valid=True,
@@ -63,10 +63,10 @@ class Options:
     def showAvailable(self, sheetName=""):
         ret = self.filterSheetName(sheetName)
         if ret == []:
-            Options.warning("Cheat sheet not found.", "", self._workflow)
+            Options.warning("Cheat sheet not found.", "", self._wf)
             return None
         for sheet in ret:
-            self._workflow.add_item(
+            self._wf.add_item(
                     title=sheet,
                     autocomplete=sheet,
                     largetext=sheet
@@ -79,11 +79,11 @@ class Options:
 
     def filterSheetName(self, query):
         names = self._parser.availableSheets()
-        return self._workflow.filter(query, names)
+        return self._wf.filter(query, names)
 
     @staticmethod
-    def warning(msg, subtitle, workflow):
-        workflow.warn_empty(
+    def warning(msg, subtitle, wf):
+        wf.warn_empty(
                 title=msg,
                 subtitle=subtitle,
                 icon=WARNINGICON,
@@ -91,8 +91,8 @@ class Options:
         return None
 
     @staticmethod
-    def hint(msg, subtitle, workflow):
-        workflow.warn_empty(
+    def hint(msg, subtitle, wf):
+        wf.warn_empty(
                 title=msg,
                 subtitle=subtitle,
                 icon=HINT,

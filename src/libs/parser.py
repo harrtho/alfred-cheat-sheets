@@ -38,14 +38,14 @@ class Parser:
     def list(self, sheetName):
         return [] if sheetName not in self._available else self.__parseSheet(sheetName)  # return value: [{}, {}, {}, ...]
 
-    def searchAcrossAll(self, keyword, workflow):
+    def searchAcrossAll(self, keyword, wf):
         ret = []
         for sheet in self._available:
             ret.extend(self.__parseSheet(sheet))
-        return self.filter(ret, keyword, workflow)  # [{}, {}, {}...]
+        return self.filter(ret, keyword, wf)  # [{}, {}, {}...]
 
-    def searchInSheet(self, keyword, sheetName, workflow):
-        return self.filter(self.__parseSheet(sheetName), keyword, workflow)
+    def searchInSheet(self, keyword, sheetName, wf):
+        return self.filter(self.__parseSheet(sheetName), keyword, wf)
 
     def __parseSheet(self, filename):
         with open(self._sheetMapping.get(filename), 'r') as f:
@@ -69,7 +69,7 @@ class Parser:
             items.append((comment, command))
         return [dict(comment=comment, command=command) for comment, command in items]  # [{}, {}, {}...]
 
-    def filter(self, content, keyword, workflow):
+    def filter(self, content, keyword, wf):
         def searchIndex(item):
             return " ".join([item["comment"], item["command"]])
-        return workflow.filter(keyword, content, key=searchIndex, match_on=MATCH_ALL ^ MATCH_ALLCHARS, min_score=50)
+        return wf.filter(keyword, content, key=searchIndex, match_on=MATCH_ALL ^ MATCH_ALLCHARS, min_score=50)

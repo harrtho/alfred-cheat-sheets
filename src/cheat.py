@@ -8,20 +8,20 @@ from libs.parser import Parser
 from libs.options import Options
 
 
-def main(workflow):
+def main(wf):
     # Try to read configuration from local disk
-    config = workflow.stored_data("configuration")
+    config = wf.stored_data("configuration")
     if config is None:
-        Options.warning("Didn't find your configuration", "Please supply your cheat sheet path using 'cf ~/your/path'", workflow)
-        workflow.send_feedback()
+        Options.warning("Didn't find your configuration", "Please supply your cheat sheet path using 'cf ~/your/path'", wf)
+        wf.send_feedback()
         return -1
 
     parser = Parser(config.getPath())
     # Note: by pasing workflow as a variable, its state is changed in Options.py logic
-    options = Options(parser, workflow)
+    options = Options(parser, wf)
 
     # Query is whatever comes after "cheat". Stored in one single variable
-    query = "" if len(workflow.args) == 0 else workflow.args[0]
+    query = "" if len(wf.args) == 0 else wf.args[0]
     # Split the query into two parts: sheetName and searchTerm
     query_tokens = query.strip().split(" ")
     query_tokens = [i.strip() for i in query_tokens if i != ""]
@@ -29,12 +29,12 @@ def main(workflow):
     # If the query is empty, show available sheets
     if len(query_tokens) == 0:
         options.showAvailable()
-        workflow.send_feedback()
+        wf.send_feedback()
         return None
     # If the query is "--search" or "-s", show hint for global search
     elif len(query_tokens) == 1 and query_tokens[0] in ("--search", "-s"):
-        Options.hint("Globally searching for ...?", "In global mode", workflow)
-        workflow.send_feedback()
+        Options.hint("Globally searching for ...?", "In global mode", wf)
+        wf.send_feedback()
         return None
     # If the query is a global search, create a search term
     elif query_tokens[0] in ("--search", "-s"):
@@ -62,31 +62,31 @@ def main(workflow):
                 if index == count_tokens - 1:
                     search_term_index = index + 1
                     sheetName = ' '.join(sheet_tokens)
-                    workflow.logger.debug(f"found sheet name '{sheetName}' in query '{query}'")
+                    wf.logger.debug(f"found sheet name '{sheetName}' in query '{query}'")
                     break
 
         if sheetName is None:
             options.showAvailable(' '.join(query_tokens))
-            workflow.send_feedback()
+            wf.send_feedback()
             return None
         # If there is still more than one option as sheet name, show available sheets
         elif len(options.filterSheetName(' '.join(query_tokens))) - 1 > 0:
             options.showAvailable(' '.join(query_tokens))
             searchTerm = ' '.join(query_tokens[search_term_index:])
-            workflow.logger.debug(f"extract search term '{searchTerm}' from query '{query}'")
+            wf.logger.debug(f"extract search term '{searchTerm}' from query '{query}'")
         elif len(query_tokens[search_term_index:]) == 0:
             options.list(sheetName)
-            workflow.send_feedback()
+            wf.send_feedback()
             return None
         else:
             searchTerm = ' '.join(query_tokens[search_term_index:])
-            workflow.logger.debug(f"extract search term '{searchTerm}' from query '{query}'")
+            wf.logger.debug(f"extract search term '{searchTerm}' from query '{query}'")
 
     options.searchInSheetByKeyword(sheetName, searchTerm)
-    workflow.send_feedback()
+    wf.send_feedback()
     return None
 
 
 if __name__ == "__main__":
-    workflow = Workflow()
-    sys.exit(workflow.run(main))
+    wf = Workflow()
+    sys.exit(wf.run(main))
