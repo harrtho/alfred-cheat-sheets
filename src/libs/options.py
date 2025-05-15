@@ -72,7 +72,7 @@ class Options:
             self._wf.add_item(
                     title=sheet_name,
                     subtitle=sheet_path,
-                    autocomplete=sheet,
+                    autocomplete=f"{sheet} ",
                     largetext=sheet
                     ).add_modifier(
                     'cmd',
