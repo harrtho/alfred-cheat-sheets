@@ -7,8 +7,26 @@ from workflow import Workflow
 from libs.parser import Parser
 from libs.options import Options
 
+# GitHub repo for self-updating
+UPDATE_SETTINGS = {'github_slug': 'harrtho/alfred-cheat-sheets'}
+
+# GitHub Issues
+HELP_URL = 'https://github.com/harrtho/alfred-cheat-sheets/issues'
+
+# Icon shown if a newer version is available
+ICON_UPDATE = 'update-available.png'
 
 def main(wf):
+
+    # Notify user if update is available
+    # ------------------------------------------------------------------
+    if wf.update_available:
+        wf.add_item('Workflow Update is Available',
+                    '↩ or ⇥ to install',
+                    autocomplete='workflow:update',
+                    valid=False,
+                    icon=ICON_UPDATE)
+
     # Try to read configuration from local disk
     config = wf.stored_data("configuration")
     if config is None:
@@ -88,5 +106,6 @@ def main(wf):
 
 
 if __name__ == "__main__":
-    wf = Workflow()
+    wf = Workflow(update_settings=UPDATE_SETTINGS,
+                  help_url=HELP_URL)
     sys.exit(wf.run(main))
