@@ -18,14 +18,22 @@ class Parser:
         return self._available
 
     def _enumAvailableSheets(self):
-        ret = []
+        sheets = []
         for root, dirname, files in os.walk(self._path, followlinks=True):
+            # Ignore hidden directories
             dirname[:] = [d for d in dirname if not d.startswith(".")]
-            files = [f for f in files if not f.startswith(".") and Path(f).suffix == ".md"]
-            ret.extend(files)
-            # update the cheat sheet mapping so that we can find the file location
-            self._sheetMapping.update({cheatsheet: "".join([root, "/", cheatsheet]) for cheatsheet in files})
-        return ret
+            # Only visible markdown files
+            md_files = [f for f in files if not f.startswith(".") and f.endswith(".md")]
+
+            for f in md_files:
+                rel_path = os.path.relpath(os.path.join(root, f), self._path)
+                cheatsheet_name = os.path.splitext(rel_path)[0]
+                sheets.append(cheatsheet_name)
+
+        # Update the cheat sheet mapping so that we can find the file location
+        self._sheetMapping.update({sheet: os.path.join(self._path, sheet + ".md") for sheet in sheets})
+
+        return sheets
 
     def list(self, sheetName):
         return [] if sheetName not in self._available else self.__parseSheet(sheetName)  # return value: [{}, {}, {}, ...]
