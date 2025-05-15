@@ -150,7 +150,7 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>cf</string>
+				<string>cheatconfig</string>
 				<key>subtext</key>
 				<string>e.g. /Users/wayne/.cheat or ~/.cheat</string>
 				<key>text</key>
