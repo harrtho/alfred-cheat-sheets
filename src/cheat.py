@@ -30,7 +30,7 @@ def main(wf):
     # Try to read configuration from local disk
     config = wf.stored_data("configuration")
     if config is None:
-        Options.warning("Didn't find your configuration", "Please supply your cheat sheet path using 'cf ~/your/path'", wf)
+        Options.warning("Didn't find your configuration", "Please supply your cheat sheets path using 'cheatconfig ~/your/path'", wf)
         wf.send_feedback()
         return -1
 
