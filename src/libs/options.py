@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+
 from workflow.workflow import ICON_HELP as WARNINGICON
 from workflow.workflow import ICON_NOTE as HINT
 
@@ -66,8 +68,10 @@ class Options:
             Options.warning("Cheat sheet not found.", "", self._wf)
             return None
         for sheet in ret:
+            sheet_path, sheet_name = os.path.split(sheet)
             self._wf.add_item(
-                    title=sheet,
+                    title=sheet_name,
+                    subtitle=sheet_path,
                     autocomplete=sheet,
                     largetext=sheet
                     ).add_modifier(
