@@ -1,4 +1,4 @@
-# Alfred-cheat <img src="src/icon.png" width="100" align="right"/> ![GitHub All Releases](https://img.shields.io/github/downloads/wayneyaoo/alfred-cheat/total.svg)
+# Cheat-Sheets Alfred Workflow <img src="src/icon.png" width="100" align="right"/> ![GitHub All Releases](https://img.shields.io/github/downloads/harrtho/alfred-cheat-sheets/total.svg)
 **Start writing your very own cheat sheets in your way and make them searchable using Alfred!**
 
 # Notice
@@ -27,7 +27,7 @@ I built this workflow because:
 
 All codes in directory `workflow` are dependencies from [this project](https://github.com/deanishe/alfred-workflow). They're not my work and is the only "dependency" for this project. Since it's included in this repo, the workflow user doesn't have to concern about dependencies.
 
-# Download via [release](https://github.com/wx-Yao/alfred-cheat/releases)
+# Download via [release](https://github.com/harrtho/alfred-cheat-sheets/releases)
 
 # How it works
 

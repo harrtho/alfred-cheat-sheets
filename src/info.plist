@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.wayneyao.cheat</string>
+	<string>de.xdevcloud.alfred-cheat-sheets</string>
 	<key>connections</key>
 	<dict>
 		<key>5C498F63-6E9D-4A07-B42A-727B78BE3825</key>
@@ -46,13 +46,13 @@
 		<array/>
 	</dict>
 	<key>createdby</key>
-	<string>Wayne Yao</string>
+	<string>Thomas Harr</string>
 	<key>description</key>
 	<string>Manage your self-defined cheat sheets &amp; knowledge base in Alfred</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Cheat</string>
+	<string>Cheat Sheets</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -190,7 +190,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Refer to github https://github.com/wayneyaoo/Alfred-cheat for details.</string>
+	<string>Refer to https://github.com/harrtho/alfred-cheat-sheets for details.</string>
 	<key>uidata</key>
 	<dict>
 		<key>01426939-712C-4E7E-A86C-41FB76D04041</key>
@@ -236,6 +236,6 @@
 	<key>version</key>
 	<string>1.2.1</string>
 	<key>webaddress</key>
-	<string>https://github.com/wayneyaoo</string>
+	<string>https://github.com/harrtho/alfred-cheat-sheets</string>
 </dict>
 </plist>
