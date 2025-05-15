@@ -36,7 +36,7 @@ class Options:
                     largetext=self.LARGETEXTPATTERN.format(item.get("command"), item.get("comment"))
                     ).add_modifier(
                     'cmd',
-                    subtitle="open in editor",
+                    subtitle="Open in editor",
                     valid=True,
                     arg=self._parser._sheetMapping.get(sheetName))
         return None
@@ -55,7 +55,7 @@ class Options:
                     largetext=self.LARGETEXTPATTERN.format(item.get("command"), item.get("comment"))
                     ).add_modifier(
                     'cmd',
-                    subtitle="open in editor",
+                    subtitle="Open in editor",
                     valid=True,
                     arg=self._parser._sheetMapping.get(sheetName))
         return None
@@ -72,7 +72,7 @@ class Options:
                     largetext=sheet
                     ).add_modifier(
                     'cmd',
-                    subtitle="open in editor",
+                    subtitle="Open in editor",
                     valid=True,
                     arg=self._parser._sheetMapping.get(sheet))
         return None
