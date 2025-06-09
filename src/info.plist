@@ -150,9 +150,9 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>cheatconfig</string>
+				<string>cheatsettings</string>
 				<key>subtext</key>
-				<string>e.g. /Users/wayne/.cheat or ~/.cheat</string>
+				<string>Change search directory</string>
 				<key>text</key>
 				<string>Configure your cheat sheet directory</string>
 				<key>withspace</key>
